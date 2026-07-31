@@ -783,6 +783,21 @@ heart
 }
 
 </script>
+<audio id="bgMusic" loop>
+  <source src="ishq-mubaarak.mp3.mp3" type="audio/mpeg">
+</audio>
 
+<button id="musicBtn" onclick="playMusic()">
+  ❤️ Play Ishq Mubarak ❤️
+</button>
+
+<script>
+function playMusic() {
+  const music = document.getElementById("bgMusic");
+  music.play();
+  document.getElementById("musicBtn").innerText =
+    "🎵 Ishq Mubarak Playing ❤️";
+}
+</script>
 </body>
 </html>
