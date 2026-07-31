@@ -1,803 +1,1048 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-<title>For Pratiksha ❤️</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-  box-sizing:border-box;
-}
+  <title>For My Pratiksha ❤️</title>
 
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:Georgia,serif;
-  color:white;
-  background:
-  radial-gradient(circle at top,#7a1748,#31091e 55%,#10030a);
-  overflow-x:hidden;
-}
+  <style>
 
-/* PASSWORD SCREEN */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-#lock{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  text-align:center;
-  background:
-  radial-gradient(circle,#7a1748,#17040d 70%);
-}
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
 
-.lock-card{
-  width:min(430px,100%);
-  padding:35px 22px;
-  border:1px solid #ffffff55;
-  border-radius:28px;
-  background:#ffffff14;
-  box-shadow:0 20px 70px #000b;
-  backdrop-filter:blur(10px);
-}
+      background:
+        radial-gradient(
+          circle at top left,
+          #ff5f8f,
+          transparent 40%
+        ),
 
-.lock-card h1{
-  color:#ffd2e3;
-  font-size:2.2rem;
-}
+        radial-gradient(
+          circle at bottom right,
+          #8b2cff,
+          transparent 45%
+        ),
 
-#pass{
-  width:100%;
-  padding:16px;
-  border-radius:15px;
-  border:none;
-  font-size:18px;
-  text-align:center;
-  margin:10px 0;
-}
+        linear-gradient(
+          135deg,
+          #160018,
+          #3b0629,
+          #120018
+        );
+    }
 
-/* BUTTON */
+    /* PASSWORD PAGE */
 
-button{
-  border:none;
-  border-radius:50px;
-  padding:15px 24px;
-  margin:10px;
-  color:white;
-  background:#ff3f85;
-  font-size:17px;
-  cursor:pointer;
-  box-shadow:0 7px 25px #ff3f8588;
-}
+    #lockScreen {
+      position: fixed;
 
-/* MAIN PAGE */
+      inset: 0;
 
-#site{
-  display:none;
-}
+      z-index: 100;
 
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-  text-align:center;
-}
+      display: flex;
 
-.card{
-  width:min(750px,100%);
-  padding:35px 20px;
-  border-radius:30px;
-  background:#ffffff12;
-  border:1px solid #ffffff33;
-  box-shadow:0 20px 70px #0009;
-  backdrop-filter:blur(10px);
-}
+      justify-content: center;
 
-h1{
-  font-size:clamp(2.5rem,10vw,5.5rem);
-  margin:10px 0;
-  color:#ffd1e3;
-  text-shadow:0 0 25px #ff3f85;
-}
+      align-items: center;
 
-h2{
-  color:#ffe0ec;
-  font-size:clamp(1.6rem,6vw,2.5rem);
-}
+      padding: 20px;
 
-.sub{
-  font-size:1.2rem;
-  color:#ffe6ef;
-}
+      background:
 
-/* SLIDESHOW */
+      linear-gradient(
+        135deg,
+        #1a0019,
+        #5a083b,
+        #18001b
+      );
+    }
 
-.slideshow-section{
-  padding:50px 15px 70px;
-  text-align:center;
-}
+    .lockBox {
 
-.slider{
-  position:relative;
-  width:min(700px,94%);
-  height:620px;
-  margin:25px auto;
-  overflow:hidden;
-  border-radius:28px;
-  border:2px solid #ffffff44;
-  background:#17040d;
-  box-shadow:0 20px 60px #000a;
-}
+      width: 100%;
 
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:opacity 1.2s ease;
-}
+      max-width: 430px;
 
-.slide.active{
-  opacity:1;
-}
+      padding: 35px 22px;
 
-.slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+      text-align: center;
 
-.caption{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  padding:30px 20px;
-  font-size:clamp(1.15rem,4vw,1.7rem);
-  line-height:1.55;
-  color:white;
-  background:
-  linear-gradient(transparent,rgba(30,0,15,.96));
-  text-shadow:0 2px 8px black;
-}
+      border-radius: 25px;
 
-/* DOTS */
+      background:
 
-.dots{
-  text-align:center;
-}
+      rgba(
+        255,
+        255,
+        255,
+        0.13
+      );
 
-.dot{
-  display:inline-block;
-  width:10px;
-  height:10px;
-  margin:5px;
-  border-radius:50%;
-  background:#ffffff55;
-}
+      border:
 
-.dot.active{
-  background:#ff5c99;
-  box-shadow:0 0 12px #ff5c99;
-}
+      1px solid
 
-/* FINAL */
+      rgba(
+        255,
+        255,
+        255,
+        0.25
+      );
 
-.final{
-  padding:80px 20px 110px;
-  text-align:center;
-}
+      backdrop-filter:
 
-.quote{
-  max-width:800px;
-  margin:25px auto;
-  font-size:clamp(1.25rem,4vw,1.8rem);
-  line-height:1.7;
-  color:#ffe4ee;
-}
+      blur(15px);
 
-.signature{
-  font-size:2rem;
-  color:#ff9fc5;
-}
+      box-shadow:
 
-/* FALLING HEARTS */
+      0 15px 50px
 
-.heart{
-  position:fixed;
-  top:-40px;
-  z-index:20;
-  pointer-events:none;
-  animation:fall linear forwards;
-}
+      rgba(
+        0,
+        0,
+        0,
+        0.45
+      );
+    }
 
-@keyframes fall{
-  to{
-    transform:
-    translateY(110vh)
-    rotate(360deg);
-    opacity:.15;
-  }
-}
+    .lockBox h1 {
 
-/* MOBILE */
+      font-size: 2rem;
 
-@media(max-width:600px){
+      margin-bottom: 15px;
+    }
 
-  .slider{
-    height:520px;
-  }
+    .lockBox p {
 
-  .caption{
-    padding:25px 15px;
-  }
+      line-height: 1.6;
 
-}
-</style>
+      margin-bottom: 20px;
+
+      color: #ffd1e3;
+    }
+
+    #passwordInput {
+
+      width: 100%;
+
+      padding: 15px;
+
+      border: none;
+
+      outline: none;
+
+      border-radius: 50px;
+
+      font-size: 1rem;
+
+      text-align: center;
+
+      margin-bottom: 12px;
+    }
+
+    .error {
+
+      min-height: 24px;
+
+      margin-top: 10px;
+
+      color: #ffb1c9;
+    }
+
+    /* MAIN WEBSITE */
+
+    #mainWebsite {
+
+      display: none;
+    }
+
+    .hearts {
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      overflow: hidden;
+
+      z-index: 0;
+    }
+
+    .heart {
+
+      position: absolute;
+
+      bottom: -50px;
+
+      font-size: 25px;
+
+      animation:
+
+      floatUp
+
+      8s
+
+      linear
+
+      infinite;
+
+      opacity: 0.7;
+    }
+
+    .heart:nth-child(1) {
+
+      left: 5%;
+
+      animation-delay: 0s;
+    }
+
+    .heart:nth-child(2) {
+
+      left: 20%;
+
+      animation-delay: 2s;
+    }
+
+    .heart:nth-child(3) {
+
+      left: 40%;
+
+      animation-delay: 4s;
+    }
+
+    .heart:nth-child(4) {
+
+      left: 60%;
+
+      animation-delay: 1s;
+    }
+
+    .heart:nth-child(5) {
+
+      left: 80%;
+
+      animation-delay: 3s;
+    }
+
+    .heart:nth-child(6) {
+
+      left: 92%;
+
+      animation-delay: 5s;
+    }
+
+    @keyframes floatUp {
+
+      0% {
+
+        transform:
+
+        translateY(0)
+
+        rotate(0deg);
+
+        opacity: 0;
+      }
+
+      15% {
+
+        opacity: 0.8;
+      }
+
+      100% {
+
+        transform:
+
+        translateY(-115vh)
+
+        rotate(360deg);
+
+        opacity: 0;
+      }
+    }
+
+    .container {
+
+      position: relative;
+
+      z-index: 1;
+
+      width:
+
+      min(
+        900px,
+        92%
+      );
+
+      margin: auto;
+
+      padding:
+
+      35px 0 60px;
+
+      text-align: center;
+    }
+
+    .card {
+
+      padding:
+
+      35px 20px;
+
+      border-radius:
+
+      25px;
+
+      background:
+
+      rgba(
+        255,
+        255,
+        255,
+        0.12
+      );
+
+      border:
+
+      1px solid
+
+      rgba(
+        255,
+        255,
+        255,
+        0.25
+      );
+
+      backdrop-filter:
+
+      blur(12px);
+
+      box-shadow:
+
+      0 15px 50px
+
+      rgba(
+        0,
+        0,
+        0,
+        0.35
+      );
+    }
+
+    h1 {
+
+      font-size:
+
+      clamp(
+        2.2rem,
+        8vw,
+        4.5rem
+      );
+
+      margin-bottom: 15px;
+
+      text-shadow:
+
+      0 0 20px
+
+      #ff4f9a;
+    }
+
+    .name {
+
+      color: #ffd1e3;
+
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+
+      font-size:
+
+      clamp(
+        1rem,
+        4vw,
+        1.4rem
+      );
+
+      line-height: 1.7;
+    }
+
+    .loveBox {
+
+      margin-top: 25px;
+
+      padding: 25px 18px;
+
+      border-radius: 20px;
+
+      background:
+
+      rgba(
+        0,
+        0,
+        0,
+        0.2
+      );
+    }
+
+    .loveBox p {
+
+      font-size:
+
+      clamp(
+        1rem,
+        3.8vw,
+        1.25rem
+      );
+
+      line-height: 1.8;
+
+      margin: 12px 0;
+    }
+
+    .highlight {
+
+      color: #ffd1e3;
+
+      font-weight: bold;
+    }
+
+    button {
+
+      border: none;
+
+      border-radius: 50px;
+
+      padding:
+
+      15px 22px;
+
+      margin:
+
+      18px 5px 0;
+
+      font-size: 1rem;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      color: white;
+
+      background:
+
+      linear-gradient(
+        135deg,
+        #ff2873,
+        #9b35ff
+      );
+
+      box-shadow:
+
+      0 8px 25px
+
+      rgba(
+        255,
+        40,
+        115,
+        0.4
+      );
+    }
+
+    button:active {
+
+      transform:
+
+      scale(0.96);
+    }
+
+    #surpriseMessage {
+
+      display: none;
+
+      margin-top: 25px;
+
+      padding: 22px;
+
+      border-radius: 18px;
+
+      background:
+
+      rgba(
+        255,
+        255,
+        255,
+        0.12
+      );
+
+      line-height: 1.8;
+
+      font-size: 1.1rem;
+    }
+
+    .footer {
+
+      margin-top: 30px;
+
+      color: #ffd1e3;
+
+      font-size: 1.05rem;
+    }
+
+  </style>
 </head>
 
 <body>
 
-<!-- PASSWORD -->
+  <!-- PASSWORD SCREEN -->
 
-<div id="lock">
+  <div id="lockScreen">
 
-  <div class="lock-card">
+    <div class="lockBox">
 
-    <div style="font-size:55px">
-      🔐💖
+      <h1>
+        🔐 A Special Surprise
+      </h1>
+
+      <p>
+        Only Pratiksha can open this
+        beautiful surprise ❤️
+      </p>
+
+      <input
+
+        type="password"
+
+        id="passwordInput"
+
+        placeholder="Enter Password"
+
+        onkeydown="checkEnter(event)"
+      >
+
+      <br>
+
+      <button
+
+        onclick="unlockWebsite()"
+      >
+
+        ❤️ Open My Surprise
+
+      </button>
+
+      <div
+
+        class="error"
+
+        id="errorMessage"
+
+      ></div>
+
     </div>
-
-    <h1>
-      A Surprise for Pratiksha
-    </h1>
-
-    <p>
-      Enter the secret password
-      to open your surprise ❤️
-    </p>
-
-    <input
-    id="pass"
-    type="password"
-    placeholder="Secret password">
-
-    <button onclick="unlock()">
-
-      Open My Surprise 💕
-
-    </button>
-
-    <p id="error"
-    style="color:#ffb5d0">
-    </p>
 
   </div>
 
-</div>
 
+  <!-- MAIN WEBSITE -->
 
-<!-- WEBSITE -->
+  <div id="mainWebsite">
 
-<div id="site">
 
+    <!-- FLOATING HEARTS -->
 
-<section class="hero">
+    <div class="hearts">
 
-<div class="card">
+      <span class="heart">❤️</span>
 
-<div style="font-size:55px">
-💖
-</div>
+      <span class="heart">💖</span>
 
-<h1>
-Happy Girlfriend Day
-</h1>
+      <span class="heart">💕</span>
 
-<h2>
-My Dear Pratiksha ❤️
-</h2>
+      <span class="heart">💗</span>
 
-<p class="sub">
+      <span class="heart">❤️</span>
 
-A small surprise made
-especially for you...
+      <span class="heart">💖</span>
 
-</p>
+    </div>
 
-<button id="musicButton">
 
-❤️ Play Ishq Mubarak ❤️
+    <!-- SONG -->
 
-</button>
+    <audio
 
-<p style="color:#ffd6e6">
+      id="bgMusic"
 
-Tap the button once
-to start our song 🎵
+      loop
 
-</p>
+      preload="auto"
 
-</div>
+    >
 
-</section>
+      <source
 
+        src="./Ishq%20Mubarak%20(From%20Tum%20Bin%202).mp3"
 
-<!-- ROMANTIC LINES -->
+        type="audio/mpeg"
 
-<section class="slideshow-section">
+      >
 
-<h2>
+    </audio>
 
-Beautiful You, Pratiksha 🌹
 
-</h2>
+    <div class="container">
 
-<div class="slider">
+      <div class="card">
 
 
-<div class="slide active">
+        <h1>
 
-<img src="photo1.jpg">
+          Happy Girlfriend Day ❤️
 
-<div class="caption">
+        </h1>
 
-“Tumhari smile meri
-favourite feeling hai.” ❤️
 
-</div>
+        <h2 class="name">
 
-</div>
+          My Dearest Pratiksha 💖
 
+        </h2>
 
-<div class="slide">
 
-<img src="photo2.jpg">
+        <p class="subtitle">
 
-<div class="caption">
+          Tum meri zindagi ka woh
+          khoobsurat hissa ho,
+          jiske bina sab kuch
+          adhura sa lagta hai. ❤️
 
-“Tumse baat karke
-mera har din
-khoobsurat ho jata hai.” 💕
+        </p>
 
-</div>
 
-</div>
+        <div class="loveBox">
 
 
-<div class="slide">
+          <p>
 
-<img src="photo3.jpg">
+            Pratiksha,
+            tumhari smile meri
+            favourite smile hai. 😊
 
-<div class="caption">
+          </p>
 
-“Hum chahe kitni bhi
-door ho, tum mere
-dil ke bahut paas ho.” 🌙
 
-</div>
+          <p>
 
-</div>
+            Tumhari khushi
+            meri khushi hai. 💕
 
+          </p>
 
-<div class="slide">
 
-<img src="photo4.jpg">
+          <p>
 
-<div class="caption">
+            Har din tumhare saath
+            aur bhi khoobsurat
+            lagta hai. ❤️
 
-“Tum meri life ka
-woh beautiful part ho
-jise main kabhi khona
-nahi chahta.” ❤️
+          </p>
 
-</div>
 
-</div>
+          <p class="highlight">
 
+            I Love You So Much,
+            Pratiksha ❤️
 
-<div class="slide">
+          </p>
 
-<img src="photo5.jpg">
 
-<div class="caption">
+        </div>
 
-“Tumhara ek message
-mere chehre par
-smile le aata hai.” ✨
 
-</div>
+        <button
 
-</div>
+          id="musicButton"
 
+          onclick="toggleMusic()"
 
-<div class="slide">
+        >
 
-<img src="photo6.jpg">
+          🎵 Play Our Song
 
-<div class="caption">
+        </button>
 
-“Tum sirf special nahi,
-tum meri favourite
-person ho.” 💗
 
-</div>
+        <button
 
-</div>
+          onclick="showSurprise()"
 
+        >
 
-<div class="slide">
+          🎁 Open Your Surprise
 
-<img src="photo7.jpg">
+        </button>
 
-<div class="caption">
 
-“Distance sirf ek number hai,
-kyunki tumhari jagah
-mere dil mein hai.” ❤️
+        <div
 
-</div>
+          id="surpriseMessage"
 
-</div>
+        >
 
 
-<div class="slide">
+          <h2>
 
-<img src="photo8.jpg">
+            For You,
+            My Love ❤️
 
-<div class="caption">
+          </h2>
 
-“Kaash har din
-tumhari smile se
-shuru ho.” 🌹
 
-</div>
+          <br>
 
-</div>
 
+          <p>
 
-<div class="slide">
+            Chahe kitni bhi
+            mushkilein aaye,
 
-<img src="photo9.jpg">
+            main hamesha
+            tumhare saath
+            rahunga. 💖
 
-<div class="caption">
+          </p>
 
-“Mujhe nahi pata
-hum kab milenge,
-lekin tum hamesha
-special rahogi.” 💕
 
-</div>
+          <br>
 
-</div>
 
+          <p>
 
-<div class="slide">
+            Tum sirf meri
+            girlfriend nahi,
 
-<img src="photo10.jpg">
+            meri best friend
+            aur meri sabse
+            pyari insaan ho. ❤️
 
-<div class="caption">
+          </p>
 
-“Thank you for coming
-into my life,
-Pratiksha.” ❤️
 
-</div>
+          <br>
 
-</div>
 
-</div>
+          <p class="highlight">
 
+            Forever Yours,
 
-<div class="dots">
+            <br>
 
-<span class="dot active"></span>
+            Pushpak ❤️
 
-<span class="dot"></span>
+          </p>
 
-<span class="dot"></span>
 
-<span class="dot"></span>
+        </div>
 
-<span class="dot"></span>
 
-<span class="dot"></span>
+        <div class="footer">
 
-<span class="dot"></span>
+          Made with ❤️
+          by Pushpak
+          for Pratiksha
 
-<span class="dot"></span>
+        </div>
 
-<span class="dot"></span>
 
-<span class="dot"></span>
+      </div>
 
-</div>
+    </div>
 
-</section>
+  </div>
 
 
-<section class="final">
+  <script>
 
-<div style="font-size:70px">
+    const correctPassword =
 
-💗
+    "Pratiksha 143 Pushpak";
 
-</div>
 
-<h1>
+    function unlockWebsite() {
 
-Forever Special
 
-</h1>
+      const enteredPassword =
 
-<p class="quote">
+      document
+      .getElementById(
+        "passwordInput"
+      )
+      .value;
 
-“Hum kabhi mile nahi,
-lekin tumse baat karte karte
-tum mere dil ke
-bahut kareeb aa gayi ho.” ❤️
 
-</p>
+      const errorMessage =
 
-<p class="signature">
+      document
+      .getElementById(
+        "errorMessage"
+      );
 
-With lots of love,
 
-<br>
+      if (
 
-Pushpak ❤️
+        enteredPassword ===
 
-</p>
+        correctPassword
 
-</section>
+      ) {
 
 
-<!-- SONG -->
+        document
+        .getElementById(
+          "lockScreen"
+        )
+        .style
+        .display =
 
-<audio
-id="bgMusic"
-loop
-preload="auto">
+        "none";
 
-<source
-src="ishq-mubarak.mp3"
-type="audio/mpeg">
 
-</audio>
+        document
+        .getElementById(
+          "mainWebsite"
+        )
+        .style
+        .display =
 
+        "block";
 
-</div>
 
+      } else {
 
-<script>
 
-/* PASSWORD */
+        errorMessage
+        .innerText =
 
-function unlock(){
+        "❌ Wrong password ❤️";
 
-let password =
-document.getElementById("pass").value;
 
-if(
-password ===
-"Pratiksha 143 Pushpak"
-){
+      }
 
-document.getElementById(
-"lock"
-).style.display="none";
+    }
 
-document.getElementById(
-"site"
-).style.display="block";
 
-}
+    function checkEnter(event) {
 
-else{
 
-document.getElementById(
-"error"
-).textContent=
+      if (
 
-"Password incorrect 💔";
+        event.key ===
 
-}
+        "Enter"
 
-}
+      ) {
 
 
-document
-.getElementById("pass")
-.addEventListener(
+        unlockWebsite();
 
-"keydown",
 
-function(event){
+      }
 
-if(event.key==="Enter"){
+    }
 
-unlock();
 
-}
+    function toggleMusic() {
 
-}
 
-);
+      const music =
 
+      document
+      .getElementById(
+        "bgMusic"
+      );
 
-/* ISHQ MUBARAK */
 
-let music =
-document.getElementById(
-"bgMusic"
-);
+      const button =
 
-let musicButton =
-document.getElementById(
-"musicButton"
-);
+      document
+      .getElementById(
+        "musicButton"
+      );
 
-musicButton.onclick=function(){
 
-music.play()
+      if (
 
-.then(function(){
+        music.paused
 
-musicButton.textContent=
+      ) {
 
-"🎵 Ishq Mubarak Playing ❤️";
 
-})
+        music
+        .play()
 
-.catch(function(){
+        .then(
 
-alert(
 
-"Song start nahi hua. Button ko dobara tap karo."
+          function () {
 
-);
 
-});
+            button
+            .innerText =
 
-};
+            "⏸ Pause Our Song";
 
 
-/* SLIDESHOW */
+          }
 
-let slides =
-document.querySelectorAll(
-".slide"
-);
 
-let dots =
-document.querySelectorAll(
-".dot"
-);
+        )
 
-let current=0;
+        .catch(
 
-setInterval(
 
-function(){
+          function () {
 
-slides[current]
-.classList.remove(
-"active"
-);
 
-dots[current]
-.classList.remove(
-"active"
-);
+            alert(
 
-current++;
+              "Song play nahi hua. " +
 
-if(
-current>=slides.length
-){
+              "Check karo ki song file " +
 
-current=0;
+              "index.html ke same folder me hai."
 
-}
+            );
 
-slides[current]
-.classList.add(
-"active"
-);
 
-dots[current]
-.classList.add(
-"active"
-);
+          }
 
-},
 
-4500
+        );
 
-);
 
+      } else {
 
-/* HEARTS */
 
-for(
+        music.pause();
 
-let i=0;
 
-i<35;
+        button
+        .innerText =
 
-i++
+        "🎵 Play Our Song";
 
-){
 
-let heart=
-document.createElement(
-"div"
-);
+      }
 
-heart.className=
-"heart";
+    }
 
-heart.innerHTML=
 
-["❤️","💖","💕"][i%3];
+    function showSurprise() {
 
-heart.style.left=
 
-Math.random()*100+
+      const message =
 
-"vw";
+      document
+      .getElementById(
+        "surpriseMessage"
+      );
 
-heart.style.fontSize=
 
-16+
+      message
+      .style
+      .display =
 
-Math.random()*25+
+      "block";
 
-"px";
 
-heart.style.animationDuration=
+      const music =
 
-5+
+      document
+      .getElementById(
+        "bgMusic"
+      );
 
-Math.random()*7+
 
-"s";
+      const button =
 
-heart.style.animationDelay=
+      document
+      .getElementById(
+        "musicButton"
+      );
 
-Math.random()*5+
 
-"s";
+      music
+      .play()
 
-document.body
-.appendChild(
-heart
-);
+      .then(
 
-}
 
-</script>
-<audio id="bgMusic" loop>
-  <source src="ishq-mubaarak.mp3.mp3" type="audio/mpeg">
-</audio>
+        function () {
 
-<button id="musicBtn" onclick="playMusic()">
-  ❤️ Play Ishq Mubarak ❤️
-</button>
 
-<script>
-function playMusic() {
-  const music = document.getElementById("bgMusic");
-  music.play();
-  document.getElementById("musicBtn").innerText =
-    "🎵 Ishq Mubarak Playing ❤️";
-}
-</script>
+          button
+          .innerText =
+
+          "⏸ Pause Our Song";
+
+
+        }
+
+
+      )
+
+      .catch(
+
+
+        function () {
+
+
+          console.log(
+
+            "Song could not play"
+
+          );
+
+
+        }
+
+
+      );
+
+
+      message
+      .scrollIntoView({
+
+        behavior:
+
+        "smooth",
+
+        block:
+
+        "center"
+
+      });
+
+
+    }
+
+  </script>
+
 </body>
 </html>
