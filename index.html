@@ -1,81 +1,788 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>For Pratiksha ❤️</title>
-<style>
-*{box-sizing:border-box} body{margin:0;font-family:Georgia,serif;color:#fff;background:radial-gradient(circle at top,#5b1238,#170612 60%,#070207);overflow-x:hidden}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:35px 18px;position:relative}
-.card{max-width:720px;background:#ffffff12;border:1px solid #ffffff30;border-radius:28px;padding:35px 20px;backdrop-filter:blur(8px);box-shadow:0 15px 60px #0008}
-h1{font-size:clamp(2.4rem,9vw,5.5rem);margin:0;color:#ffd1e2;text-shadow:0 0 25px #ff4f91}
-.sub{font-size:1.25rem;color:#ffe5ef}.heart{position:fixed;top:-30px;animation:fall linear forwards;color:#ff7bab;z-index:5;pointer-events:none}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.2}}
-button{border:0;border-radius:99px;padding:14px 23px;background:#ff4f91;color:#fff;font-size:1rem;margin:10px;box-shadow:0 6px 25px #ff4f9188}
-section{max-width:950px;margin:auto;padding:60px 18px;text-align:center}.quote{font-size:clamp(1.25rem,4vw,1.8rem);line-height:1.7;color:#ffe8f1}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
-.gallery img{width:100%;height:310px;object-fit:cover;border-radius:20px;border:2px solid #ffffff30;box-shadow:0 10px 30px #0008;transition:.3s}.gallery img:hover{transform:scale(1.03)}
-.final{padding:100px 20px}.signature{font-size:2rem;color:#ff9dc2}
-#musicHint{font-family:Arial,sans-serif;font-size:.9rem;color:#ffd9e8}
-</style></head><body>
-<div id="lock" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle,#6b1643,#16040e 65%);text-align:center">
-  <div style="max-width:430px;padding:35px 22px;border:1px solid #ffffff44;border-radius:28px;background:#ffffff12;box-shadow:0 20px 70px #0009">
-    <div style="font-size:55px">🔐💖</div>
-    <h1 style="font-size:2.2rem;margin:10px 0;color:#ffd1e2">A Surprise for Pratiksha</h1>
-    <p style="font-family:Arial,sans-serif;color:#ffe3ee">Enter the secret password to open this special page ❤️</p>
-    <input id="pass" type="password" placeholder="Secret password" style="width:100%;padding:15px;border-radius:14px;border:1px solid #ffffff55;background:#fff;color:#333;font-size:18px;text-align:center">
-    <button onclick="unlock()">Open My Surprise 💕</button>
-    <p id="error" style="font-family:Arial,sans-serif;color:#ffb5cf;min-height:20px"></p>
-  </div>
-</div>
-<div id="site" style="display:none">
-<div class="hero"><div class="card">
-<div style="font-size:3rem">💖</div><h1>Happy Girlfriend Day</h1>
-<h2>My Dear Pratiksha ❤️</h2>
-<p class="sub">A small surprise, made especially for you...</p>
-<button id="musicBtn">🎵 Start Our Music</button><div id="musicHint">Music will try to start automatically. If your phone blocks it, tap the button.</div>
-</div></div>
-<section><p class="quote">“Hum kabhi mile nahi, lekin tumse baat karte karte tum mere dil ke bahut kareeb aa gayi ho.” 💕</p>
-<p class="quote">“Tumhara ek message mere din ko khoobsurat bana deta hai, aur tumhari smile meri favourite feeling hai.” ✨</p></section>
-<section><h2>Beautiful You, Pratiksha 🌹</h2><div class="gallery">
-<img src="photo1.jpg" loading="lazy">
-<img src="photo2.jpg" loading="lazy">
-<img src="photo3.jpg" loading="lazy">
-<img src="photo4.jpg" loading="lazy">
-<img src="photo5.jpg" loading="lazy">
-<img src="photo6.jpg" loading="lazy">
-<img src="photo7.jpg" loading="lazy">
-<img src="photo8.jpg" loading="lazy">
-<img src="photo9.jpg" loading="lazy">
-<img src="photo10.jpg" loading="lazy">
-</div></section>
-<section><p class="quote">“Distance sirf ek number hai, kyunki tumhari jagah mere dil mein bahut special hai.” ❤️</p>
-<p class="quote">“Mujhe nahi pata hum kab milenge, lekin mujhe itna pata hai ki tum meri life mein bahut special ho.” 🌙</p></section>
-<section class="final"><div style="font-size:4rem">💗</div><h1>Forever Special</h1><p class="quote">Thank you for coming into my life, Pratiksha.</p><p class="signature">With lots of love,<br>Pushpak ❤️</p></section>
-<script>
-for(let i=0;i<35;i++){let h=document.createElement('div');h.className='heart';h.textContent=['♥','💖','💕'][i%3];h.style.left=Math.random()*100+'vw';h.style.animationDuration=(5+Math.random()*7)+'s';h.style.animationDelay=Math.random()*6+'s';h.style.fontSize=(16+Math.random()*22)+'px';document.body.appendChild(h)}
-let ctx,playing=false, timer;
-const notes=[261.63,329.63,392,523.25,392,329.63,293.66,349.23,440,587.33,440,349.23];
-function playTone(f,t){let o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.07,ctx.currentTime+.03);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+t);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+t+.02)}
-function startMusic(){if(playing)return;ctx=new (window.AudioContext||window.webkitAudioContext)();playing=true;let i=0;timer=setInterval(()=>{playTone(notes[i++%notes.length],.55)},600);document.getElementById('musicBtn').textContent='🎵 Music Playing';}
-document.getElementById('musicBtn').onclick=startMusic;
-window.addEventListener('load',()=>{setTimeout(startMusic,500)});
-</script></div>
-<script>
-function unlock(){
- const v=document.getElementById('pass').value;
- if(v==='Pratiksha 143 Pushpak'){document.getElementById('lock').style.display='none';document.getElementById('site').style.display='block';}
- else document.getElementById('error').textContent='Password incorrect 💔 Try again.';
-}
-document.getElementById('pass').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
-</script>
-  <audio id="bgMusic" loop>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <source src="ishq-mubarak.mp3" type="audio/mpeg">
+<title>For Pratiksha ❤️</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Georgia,serif;
+  color:white;
+  background:
+  radial-gradient(circle at top,#7a1748,#31091e 55%,#10030a);
+  overflow-x:hidden;
+}
+
+/* PASSWORD SCREEN */
+
+#lock{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  text-align:center;
+  background:
+  radial-gradient(circle,#7a1748,#17040d 70%);
+}
+
+.lock-card{
+  width:min(430px,100%);
+  padding:35px 22px;
+  border:1px solid #ffffff55;
+  border-radius:28px;
+  background:#ffffff14;
+  box-shadow:0 20px 70px #000b;
+  backdrop-filter:blur(10px);
+}
+
+.lock-card h1{
+  color:#ffd2e3;
+  font-size:2.2rem;
+}
+
+#pass{
+  width:100%;
+  padding:16px;
+  border-radius:15px;
+  border:none;
+  font-size:18px;
+  text-align:center;
+  margin:10px 0;
+}
+
+/* BUTTON */
+
+button{
+  border:none;
+  border-radius:50px;
+  padding:15px 24px;
+  margin:10px;
+  color:white;
+  background:#ff3f85;
+  font-size:17px;
+  cursor:pointer;
+  box-shadow:0 7px 25px #ff3f8588;
+}
+
+/* MAIN PAGE */
+
+#site{
+  display:none;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  text-align:center;
+}
+
+.card{
+  width:min(750px,100%);
+  padding:35px 20px;
+  border-radius:30px;
+  background:#ffffff12;
+  border:1px solid #ffffff33;
+  box-shadow:0 20px 70px #0009;
+  backdrop-filter:blur(10px);
+}
+
+h1{
+  font-size:clamp(2.5rem,10vw,5.5rem);
+  margin:10px 0;
+  color:#ffd1e3;
+  text-shadow:0 0 25px #ff3f85;
+}
+
+h2{
+  color:#ffe0ec;
+  font-size:clamp(1.6rem,6vw,2.5rem);
+}
+
+.sub{
+  font-size:1.2rem;
+  color:#ffe6ef;
+}
+
+/* SLIDESHOW */
+
+.slideshow-section{
+  padding:50px 15px 70px;
+  text-align:center;
+}
+
+.slider{
+  position:relative;
+  width:min(700px,94%);
+  height:620px;
+  margin:25px auto;
+  overflow:hidden;
+  border-radius:28px;
+  border:2px solid #ffffff44;
+  background:#17040d;
+  box-shadow:0 20px 60px #000a;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.caption{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:30px 20px;
+  font-size:clamp(1.15rem,4vw,1.7rem);
+  line-height:1.55;
+  color:white;
+  background:
+  linear-gradient(transparent,rgba(30,0,15,.96));
+  text-shadow:0 2px 8px black;
+}
+
+/* DOTS */
+
+.dots{
+  text-align:center;
+}
+
+.dot{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  margin:5px;
+  border-radius:50%;
+  background:#ffffff55;
+}
+
+.dot.active{
+  background:#ff5c99;
+  box-shadow:0 0 12px #ff5c99;
+}
+
+/* FINAL */
+
+.final{
+  padding:80px 20px 110px;
+  text-align:center;
+}
+
+.quote{
+  max-width:800px;
+  margin:25px auto;
+  font-size:clamp(1.25rem,4vw,1.8rem);
+  line-height:1.7;
+  color:#ffe4ee;
+}
+
+.signature{
+  font-size:2rem;
+  color:#ff9fc5;
+}
+
+/* FALLING HEARTS */
+
+.heart{
+  position:fixed;
+  top:-40px;
+  z-index:20;
+  pointer-events:none;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:
+    translateY(110vh)
+    rotate(360deg);
+    opacity:.15;
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .slider{
+    height:520px;
+  }
+
+  .caption{
+    padding:25px 15px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+
+<div id="lock">
+
+  <div class="lock-card">
+
+    <div style="font-size:55px">
+      🔐💖
+    </div>
+
+    <h1>
+      A Surprise for Pratiksha
+    </h1>
+
+    <p>
+      Enter the secret password
+      to open your surprise ❤️
+    </p>
+
+    <input
+    id="pass"
+    type="password"
+    placeholder="Secret password">
+
+    <button onclick="unlock()">
+
+      Open My Surprise 💕
+
+    </button>
+
+    <p id="error"
+    style="color:#ffb5d0">
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- WEBSITE -->
+
+<div id="site">
+
+
+<section class="hero">
+
+<div class="card">
+
+<div style="font-size:55px">
+💖
+</div>
+
+<h1>
+Happy Girlfriend Day
+</h1>
+
+<h2>
+My Dear Pratiksha ❤️
+</h2>
+
+<p class="sub">
+
+A small surprise made
+especially for you...
+
+</p>
+
+<button id="musicButton">
+
+❤️ Play Ishq Mubarak ❤️
+
+</button>
+
+<p style="color:#ffd6e6">
+
+Tap the button once
+to start our song 🎵
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ROMANTIC LINES -->
+
+<section class="slideshow-section">
+
+<h2>
+
+Beautiful You, Pratiksha 🌹
+
+</h2>
+
+<div class="slider">
+
+
+<div class="slide active">
+
+<img src="photo1.jpg">
+
+<div class="caption">
+
+“Tumhari smile meri
+favourite feeling hai.” ❤️
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo2.jpg">
+
+<div class="caption">
+
+“Tumse baat karke
+mera har din
+khoobsurat ho jata hai.” 💕
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo3.jpg">
+
+<div class="caption">
+
+“Hum chahe kitni bhi
+door ho, tum mere
+dil ke bahut paas ho.” 🌙
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo4.jpg">
+
+<div class="caption">
+
+“Tum meri life ka
+woh beautiful part ho
+jise main kabhi khona
+nahi chahta.” ❤️
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo5.jpg">
+
+<div class="caption">
+
+“Tumhara ek message
+mere chehre par
+smile le aata hai.” ✨
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo6.jpg">
+
+<div class="caption">
+
+“Tum sirf special nahi,
+tum meri favourite
+person ho.” 💗
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo7.jpg">
+
+<div class="caption">
+
+“Distance sirf ek number hai,
+kyunki tumhari jagah
+mere dil mein hai.” ❤️
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo8.jpg">
+
+<div class="caption">
+
+“Kaash har din
+tumhari smile se
+shuru ho.” 🌹
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo9.jpg">
+
+<div class="caption">
+
+“Mujhe nahi pata
+hum kab milenge,
+lekin tum hamesha
+special rahogi.” 💕
+
+</div>
+
+</div>
+
+
+<div class="slide">
+
+<img src="photo10.jpg">
+
+<div class="caption">
+
+“Thank you for coming
+into my life,
+Pratiksha.” ❤️
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="dots">
+
+<span class="dot active"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+</div>
+
+</section>
+
+
+<section class="final">
+
+<div style="font-size:70px">
+
+💗
+
+</div>
+
+<h1>
+
+Forever Special
+
+</h1>
+
+<p class="quote">
+
+“Hum kabhi mile nahi,
+lekin tumse baat karte karte
+tum mere dil ke
+bahut kareeb aa gayi ho.” ❤️
+
+</p>
+
+<p class="signature">
+
+With lots of love,
+
+<br>
+
+Pushpak ❤️
+
+</p>
+
+</section>
+
+
+<!-- SONG -->
+
+<audio
+id="bgMusic"
+loop
+preload="auto">
+
+<source
+src="ishq-mubarak.mp3"
+type="audio/mpeg">
 
 </audio>
 
-<button onclick="document.getElementById('bgMusic').play()">
 
-  ❤️ Play Ishq Mubarak ❤️
+</div>
 
-</button>
-</body></html>
+
+<script>
+
+/* PASSWORD */
+
+function unlock(){
+
+let password =
+document.getElementById("pass").value;
+
+if(
+password ===
+"Pratiksha 143 Pushpak"
+){
+
+document.getElementById(
+"lock"
+).style.display="none";
+
+document.getElementById(
+"site"
+).style.display="block";
+
+}
+
+else{
+
+document.getElementById(
+"error"
+).textContent=
+
+"Password incorrect 💔";
+
+}
+
+}
+
+
+document
+.getElementById("pass")
+.addEventListener(
+
+"keydown",
+
+function(event){
+
+if(event.key==="Enter"){
+
+unlock();
+
+}
+
+}
+
+);
+
+
+/* ISHQ MUBARAK */
+
+let music =
+document.getElementById(
+"bgMusic"
+);
+
+let musicButton =
+document.getElementById(
+"musicButton"
+);
+
+musicButton.onclick=function(){
+
+music.play()
+
+.then(function(){
+
+musicButton.textContent=
+
+"🎵 Ishq Mubarak Playing ❤️";
+
+})
+
+.catch(function(){
+
+alert(
+
+"Song start nahi hua. Button ko dobara tap karo."
+
+);
+
+});
+
+};
+
+
+/* SLIDESHOW */
+
+let slides =
+document.querySelectorAll(
+".slide"
+);
+
+let dots =
+document.querySelectorAll(
+".dot"
+);
+
+let current=0;
+
+setInterval(
+
+function(){
+
+slides[current]
+.classList.remove(
+"active"
+);
+
+dots[current]
+.classList.remove(
+"active"
+);
+
+current++;
+
+if(
+current>=slides.length
+){
+
+current=0;
+
+}
+
+slides[current]
+.classList.add(
+"active"
+);
+
+dots[current]
+.classList.add(
+"active"
+);
+
+},
+
+4500
+
+);
+
+
+/* HEARTS */
+
+for(
+
+let i=0;
+
+i<35;
+
+i++
+
+){
+
+let heart=
+document.createElement(
+"div"
+);
+
+heart.className=
+"heart";
+
+heart.innerHTML=
+
+["❤️","💖","💕"][i%3];
+
+heart.style.left=
+
+Math.random()*100+
+
+"vw";
+
+heart.style.fontSize=
+
+16+
+
+Math.random()*25+
+
+"px";
+
+heart.style.animationDuration=
+
+5+
+
+Math.random()*7+
+
+"s";
+
+heart.style.animationDelay=
+
+Math.random()*5+
+
+"s";
+
+document.body
+.appendChild(
+heart
+);
+
+}
+
+</script>
+
+</body>
+</html>
